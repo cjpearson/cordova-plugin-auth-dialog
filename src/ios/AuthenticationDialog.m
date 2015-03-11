@@ -18,10 +18,9 @@
 
     NSLog(@"AuthDialog: authenticate %@", self.uri);
 
-    // large timout is used so that we have enough time to request user name and password
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.uri]
                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                         timeoutInterval:60000.0];
+                                         timeoutInterval:10];
 
     // use HEAD since it is faster than actial data retrieving (GET)
     // this does not work due to WebView issue: http://stackoverflow.com/questions/25755555/stream-is-sending-an-event-before-being-opened
@@ -168,6 +167,12 @@ CredentialsViewController * credentialsViewController;
     UITextField *password = [alertView textFieldAtIndex:1];
 
     self.onResult(username.text, password.text, false);
+}
+
+- (void)didPresentAlertView:(UIAlertView *)alertView
+{
+    //show keyboard on iOS 8
+    [[alertView textFieldAtIndex:0] selectAll:nil];
 }
 
 @end
