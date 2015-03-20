@@ -45,6 +45,13 @@
     
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
     
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray *cookies = [cookieStorage cookies];
+    for (NSHTTPCookie *cookie in cookies) {
+        [cookieStorage deleteCookie:cookie];
+        NSLog(@"deleted cookie %@", [cookie description]);
+    }
+    
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
 

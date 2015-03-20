@@ -37,6 +37,9 @@
 
         <header-file src="src/ios/AuthenticationDialog.h" />
         <source-file src="src/ios/AuthenticationDialog.m" />
+        
+        <header-file src="src/ios/UIWebView+AuthDialog.h" />
+        <source-file src="src/ios/UIWebView+AuthDialog.m" />
 
         <js-module name="AuthDialog" src="src/ios/authDialog.js">
             <clobbers target="window.authDialog" />
