@@ -116,6 +116,11 @@ public class AuthenticationDialog {
         int titleStringId = resources.getIdentifier("sign_in_to", "string", mContext.getPackageName());
         String title = mContext.getText(titleStringId).toString().replace(
                 "%s1", mHost).replace("%s2", mRealm);
+        
+        //if there is no realm, trim the space and quotes
+        if (mRealm == null || mRealm.length() == 0){
+            title = title.substring(0, title.length() - 3);
+        }
 
         int actionStringId = resources.getIdentifier("action", "string", mContext.getPackageName());
         int cancelStringId = resources.getIdentifier("cancel", "string", mContext.getPackageName());
